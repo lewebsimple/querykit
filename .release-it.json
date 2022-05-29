@@ -10,7 +10,6 @@
     "publishConfig": {
       "access": "public"
     },
-    "registry": "https://registry.npmjs.org",
-    "skipChecks": true
+    "registry": "https://registry.npmjs.org"
   }
 }
