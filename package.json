@@ -19,7 +19,7 @@
     "build:vite": "vite build",
     "build:tsc": "tsc",
     "clean": "rimraf dist",
-    "lint": "eslint --fix --ignore-pattern .gitignore .",
+    "lint": "eslint --fix --ignore-path .gitignore .",
     "release": "release-it"
   },
   "dependencies": {
