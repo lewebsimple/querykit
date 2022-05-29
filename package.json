@@ -51,21 +51,5 @@
   },
   "eslintConfig": {
     "extends": "@lewebsimple/eslint-config-vue"
-  },
-  "release-it": {
-    "github": {
-      "release": true
-    },
-    "hooks": {
-      "before:init": "yarn lint",
-      "after:bump": "yarn build"
-    },
-    "npm": {
-      "publishConfig": {
-        "access": "public"
-      },
-      "registry": "https://registry.npmjs.org",
-      "skipChecks": true
-    }
   }
 }
