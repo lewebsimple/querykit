@@ -27,6 +27,9 @@ export function useQueryParams<ParamsType extends BaseParams>({
           case "number":
             value = parseInt(value as string);
             break;
+          case "object":
+            value = typeof value === "string" ? [value] : value;
+            break;
         }
       }
       return { ...prev, [key]: value };
@@ -57,6 +60,7 @@ export function useQueryParams<ParamsType extends BaseParams>({
           }
           return { ...prev, [key]: newParams[key] };
         }, urlSearchParams as ParamsType),
+        { arrayFormat: "comma" },
       );
       window.history.replaceState(null, "", `?${search}`);
       onChange && (await onChange(newParams as ParamsType, oldParams as ParamsType));
