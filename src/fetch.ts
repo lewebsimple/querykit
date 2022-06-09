@@ -7,8 +7,8 @@ export function useQueryFetch<Return>({
   contentType = "application/x-www-form-urlencoded",
 }: {
   url: string;
-  method: "GET" | "POST";
-  contentType: "application/x-www-form-urlencoded" | "application/json";
+  method?: "GET" | "POST";
+  contentType?: "application/x-www-form-urlencoded" | "application/json";
 }) {
   let controller: null | AbortController = null;
   const isQuerying = ref<boolean>(false);
