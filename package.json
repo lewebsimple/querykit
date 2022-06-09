@@ -51,5 +51,9 @@
   },
   "eslintConfig": {
     "extends": "@lewebsimple/eslint-config-vue"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
   }
 }
