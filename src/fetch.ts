@@ -10,10 +10,12 @@ export function useQueryFetch<Return>({
   method: "GET" | "POST";
   contentType: "application/x-www-form-urlencoded" | "application/json";
 }) {
-  const controller = new AbortController();
+  let controller: null | AbortController = null;
   const isQuerying = ref<boolean>(false);
   async function query<Result>(params: any): Promise<{ error?: string; result?: Result }> {
     let error: undefined | string, result: undefined | Result;
+    controller && controller.abort();
+    controller = new AbortController();
     try {
       isQuerying.value = true;
       const response = await fetch(url, {
@@ -24,6 +26,7 @@ export function useQueryFetch<Return>({
         body: contentType === "application/json" ? JSON.stringify(params) : param(params),
         signal: controller.signal,
       });
+      controller = null;
       result = (await response.json()) as unknown as Result;
     } catch (e) {
       error = typeof e === "string" ? e : e instanceof Error ? e.message : undefined;
@@ -33,5 +36,5 @@ export function useQueryFetch<Return>({
     return { error, result };
   }
 
-  return { isQuerying, query, abortQuery: controller.abort };
+  return { isQuerying, query };
 }
